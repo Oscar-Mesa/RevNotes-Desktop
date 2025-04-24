@@ -1,0 +1,63 @@
+{
+  "name": "revnotes",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.tunombre.revnotes",
+    "productName": "RevNotes",
+    "files": [
+      "dist/**/*",
+      "src/**/*",
+      "img/**/*",
+      "main.js",
+      "preload.js"
+    ],
+    "extraResources": [
+      {
+        "from": "src/img",
+        "to": "img"
+      }
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "icon": "src/img/RevNotes-Logo_sin-fondo_.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "keywords": [
+    "notes",
+    "note-taking",
+    "desktop app",
+    "notepad",
+    "markdown",
+    "rich text editor",
+    "offline notes",
+    "note organizer",
+    "RevNotes",
+    "personal notes",
+    "simple notes",
+    "writing app",
+    "to-do",
+    "minimalist notes"
+  ],
+  "author": "Neiver Peralta / Revien",
+  "license": "ISC",
+  "description": "RevNotes es tu espacio digital para ideas, tareas, con soporte para formato enriquecido, imágenes y más.",
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^26.0.12"
+  }
+}
