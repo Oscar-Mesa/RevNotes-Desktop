@@ -27,6 +27,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const toggleBtn = document.getElementById('toggle-aside');
     const toggleBtnHide = document.getElementById('toggle-aside-hide');
     const sidebar = document.getElementById('sidebar');
+
+    const toggleAlwaysOnTop = document.getElementById('always-on-top-toggle');
+
+    toggleAlwaysOnTop.addEventListener('change', (event) => {
+        const isChecked = event.target.checked;
+        window.electronAPI.toggleAlwaysOnTop(isChecked);
+    });
     
     let currentFolderPath = '';
     let currentFilePath = '';

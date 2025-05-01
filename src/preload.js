@@ -2,6 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 // Exponer funciones seguras al renderer
 contextBridge.exposeInMainWorld('electronAPI', {
+    toggleAlwaysOnTop: (isOn) => ipcRenderer.send('set-always-on-top', isOn),
     sendMessage: (message) => ipcRenderer.send('message', message),
     getBaseFolderPath: () => ipcRenderer.invoke('get-base-folder-path'),
     selectFolder: () => ipcRenderer.invoke('select-parent-folder'),

@@ -37,7 +37,14 @@ if (!fs.existsSync(baseFolderPath)) {
     fs.mkdirSync(baseFolderPath, { recursive: true });
 }
 
-console.log('Ruta base configurada:', baseFolderPath);
+// console.log('Ruta base configurada:', baseFolderPath);
+
+ipcMain.on('set-always-on-top', (event, isOn) => {
+    const win = BrowserWindow.getAllWindows()[0]; // O guarda tu ventana principal en una variable
+    if (win) {
+      win.setAlwaysOnTop(isOn);
+    }
+  });
 
 ipcMain.handle('create-folder', async (event, folderName) => {
     const newFolderPath = path.join(baseFolderPath, folderName);
@@ -52,7 +59,7 @@ ipcMain.handle('create-folder', async (event, folderName) => {
 ipcMain.handle('list-folders', async () => {
     try {
         const items = fs.readdirSync(baseFolderPath);
-        console.log(baseFolderPath);
+        // console.log(baseFolderPath);
         const folders = items.filter(item => {
         const itemPath = path.join(baseFolderPath, item);
         return fs.statSync(itemPath).isDirectory();  // Filtrar solo las carpetas
@@ -67,7 +74,7 @@ ipcMain.handle('list-folders', async () => {
 
 ipcMain.handle('list-files', async (event, folderPath) => {
     if (!folderPath || typeof folderPath !== 'string') {
-        console.log('No se proporcionó una ruta válida para la carpeta.')
+        // console.log('No se proporcionó una ruta válida para la carpeta.')
         throw new Error('No se proporcionó una ruta válida para la carpeta.');
     }
     try {
@@ -81,7 +88,7 @@ ipcMain.handle('list-files', async (event, folderPath) => {
 ipcMain.handle('read-file', async (event, filePath) => {
     try {
         const content = fs.readFileSync(filePath, 'utf-8');
-        console.log("El backend recibió path para leer:", filePath);
+        // console.log("El backend recibió path para leer:", filePath);
         return content;
     } catch (error) {
         console.error('Error al leer el archivo:', error);
@@ -108,7 +115,7 @@ ipcMain.handle('create-file', async (event, folderPath, fileName) => {
 
         
         if (!fs.existsSync(filePath)) {
-            console.log('fileNumber:' + fileNumber)
+            // console.log('fileNumber:' + fileNumber)
             fs.writeFileSync(filePath, '', 'utf8'); // Crear archivo vacío
             return true;
         } else {
@@ -119,8 +126,8 @@ ipcMain.handle('create-file', async (event, folderPath, fileName) => {
                 filePath = `${folderPath}/${nombreNota}.txt`;
             }
             
-            console.log('fileNumber existe:' + fileNumber)
-            console.log(' nota actualizada', fileName)
+            // console.log('fileNumber existe:' + fileNumber)
+            // console.log(' nota actualizada', fileName)
             fs.writeFileSync(filePath, '', 'utf8');
             return true;
         }
@@ -147,7 +154,7 @@ ipcMain.handle('rename-file', async (event, oldFilePath, newFilePath) => {
 ipcMain.handle('delete-file', async (event, filePath) => {
     try {
         if (fs.existsSync(filePath)) {
-            console.log("El backend recibió path:", filePath);
+            // console.log("El backend recibió path:", filePath);
             fs.unlinkSync(filePath); // Eliminar el archivo
             return true;
         } else {

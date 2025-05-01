@@ -346,7 +346,6 @@ body {
 
 .boton{
     color: white;
-    background-color: transparent;
 
     font-size: 13px;
     font-weight: 600;
@@ -515,6 +514,113 @@ body {
 #toggle-aside:hover, #toggle-aside-hide:hover{
     background-color: #2e2e2e;
 } 
+
+/* Posición fija en la esquina inferior izquierda */
+.settings-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  #settings-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #575757;
+    border-radius: 50%;
+    border: none;
+    color: white;
+  }
+  #settings-button svg {
+    width: 23px;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 100%; /* aparece a la derecha del botón */
+    bottom: 14%;
+    z-index: 100;
+    padding: .7rem;
+  }
+  
+  .settings-container:hover .dropdown-menu {
+    display: block;
+  }
+  .settings-container:hover #settings-button svg{
+    transform: rotate(90deg);
+  }
+
+  .options{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background: #474747;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    /* box-shadow: 2px 2px 5px rgba(0,0,0,0.2); */
+  }
+
+  .toggle-switch {
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 10px;
+    gap: 8px;
+    user-select: none;
+  }
+  .toggle-switch input {
+    display: none; /* Oculta el checkbox original */
+  }
+  /* .toggle-switch:hover{
+    background-color: #616161;
+  } */
+
+  .toggle-switch svg{
+    width: 20px;
+  }
+  
+  .slider {
+    width: 40px;
+    height: 20px;
+    background-color: #363636;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.2s;
+  }
+  
+  .slider::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  
+  /* Cuando el checkbox está seleccionado */
+  .toggle-switch input:checked + .slider {
+    background-color: #9e03d6;
+  }
+  
+  .toggle-switch input:checked + .slider::before {
+    transform: translateX(20px);
+  }
+  
+  .toggle-label {
+    color: white;
+    white-space: nowrap; 
+  }
 
 
 /* responsive desing Mobile */
