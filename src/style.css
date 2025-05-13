@@ -245,6 +245,11 @@ body {
     }
 
 
+    .ql-editor ul[data-checked=true] > li::before{
+        color: greenyellow !important;
+    }
+
+
 /* ----------------- Editor de texto ------------------------------- */
 
 #editor::-webkit-scrollbar {

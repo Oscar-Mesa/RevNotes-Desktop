@@ -59,27 +59,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     toggleBtnHide.addEventListener('click', () => {
         sidebar.classList.toggle('hidden');
     });
-    
+        
     const toolbarOptions = [
         [{ 'header': [1, 2, 3, false] }],
         [{ 'font': [] }],
         ['bold', 'italic', 'underline', 'strike'], 
         [{ 'color': [] }, { 'background': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
         [{ 'align': [] }],
         [{ 'indent': '-1'}, { 'indent': '+1' }],
         [{ 'script': 'sub'}, { 'script': 'super' }],
         ['blockquote', 'code-block'],
         ['link', 'image', 'video'],
-        [{ 'size': ['small', false, 'large', 'huge'] }],  
+        [{ 'size': ['small', false, 'large', 'huge'] }],
     ];
-    
+
     const quill = new Quill('#editor-container', {
         theme: 'snow',
         modules: {
             toolbar: toolbarOptions
         }
     });
+
 
     quill.on('text-change', function(delta, oldDelta, source) {
         if (source === 'user') {
